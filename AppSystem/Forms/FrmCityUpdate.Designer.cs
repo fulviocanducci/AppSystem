@@ -79,7 +79,7 @@
             this.ButSalve.Name = "ButSalve";
             this.ButSalve.Size = new System.Drawing.Size(121, 37);
             this.ButSalve.TabIndex = 20;
-            this.ButSalve.ButtonOnClick += new AppSystem.Components.Button.ButtonClick(this.ButSalve_ButtonOnClick);            
+            this.ButSalve.ButtonOnClick += new AppSystem.Components.Button.ButtonClick(this.ButSalve_ButtonOnClick);
             // 
             // ButClose
             // 

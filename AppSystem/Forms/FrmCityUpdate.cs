@@ -1,47 +1,45 @@
 ﻿using AppSystem.Data;
 using AppSystem.Extensions;
 using AppSystem.Models;
-using AppSystem.Repository;
 using AppSystem.Validators;
 using FluentValidation.Results;
 using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace AppSystem.Forms
 {
     public partial class FrmCityUpdate : Form
     {
-        public AbstractRepositoryCity RepositoryCity { get; }
-        public AbstractRepositoryUf RepositoryUf { get; }
         public CityValidator Validator { get; }
+        public Database Database { get; }
         public int Id { get; }
 
-        public FrmCityUpdate(Database database, AbstractRepositoryCity repositoryCity, int id = 0)
+        public FrmCityUpdate(Database database, int id = 0)
         {
             InitializeComponent();
-            Id = id;
-            RepositoryCity = repositoryCity;
-            RepositoryUf = new RepositoryUf(database);
+            Database = database;
             Validator = new CityValidator(database);
-        }        
+            Id = id;
+        }
 
         private void FrmCityUpdate_Load(object sender, EventArgs e)
         {
             AcceptButton = ButSalve.ButtonReference;
             CancelButton = ButClose.ButtonReference;
             TxtName.Text = "";
-            CmbUf.DataSource = RepositoryUf.Get(x => x.Name);
+            CmbUf.DataSource = Database.Uf.AsNoTracking().OrderBy(x => x.Name).ToList();
             CmbUf.ValueMember = "Id";
             CmbUf.DisplayMember = "Name";
-            ButClose.Tag = "Add";
+            ButClose.Tag = Operation.Insert;
             if (Id > 0)
             {
-                City city = RepositoryCity.GetOne(x => x.Id == Id);
+                City city = Database.City.AsNoTracking().FirstOrDefault(x => x.Id == Id);
                 if (city != null)
                 {
                     CmbUf.SelectedValue = city.UfId;
                     TxtName.Text = city.Name;
-                    ButClose.Tag = "Update";
+                    ButClose.Tag = Operation.Update;
                 }
                 else
                 {
@@ -68,18 +66,22 @@ namespace AppSystem.Forms
 
                     switch (ButClose.Tag)
                     {
-                        case "Add":
-                            RepositoryCity.Add(city);
+                        case Operation.Insert:
+                            Database.City.Add(city);
                             break;
-                        case "Update":
-                            RepositoryCity.Update(city);
+                        case Operation.Update:
+                            Database.Entry(city).State = System.Data.Entity.EntityState.Modified;
                             break;
                     }
-                    MessageBox.Show(
-                        "Dados atualizados com êxito",
-                        "Aviso", MessageBoxButtons.OK,
-                        MessageBoxIcon.Information
-                    );
+                    if (Database.SaveChanges() > 0)
+                    {
+                        MessageBox.Show(
+                            "Dados atualizados com êxito",
+                            "Aviso", MessageBoxButtons.OK,
+                            MessageBoxIcon.Information
+                        );
+                    }
+                    Database.Entry(city).State = System.Data.Entity.EntityState.Detached;                    
                     Close();
                 }
                 else
@@ -91,6 +93,15 @@ namespace AppSystem.Forms
                         MessageBoxIcon.Error
                     );
                 }
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Uf inválida",
+                    "Validação",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
             }
         }
 

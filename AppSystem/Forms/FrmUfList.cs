@@ -9,13 +9,11 @@ namespace AppSystem.Forms
     public partial class FrmUfList : Form
     {
         public Database Database { get; }
-        public AbstractRepositoryUf RepositoryUf { get; }
 
         public FrmUfList(Database database)
         {
             InitializeComponent();
             Database = database;
-            RepositoryUf = new RepositoryUf(database);
         }
 
         private void FrmUfList_Load(object sender, EventArgs e)
@@ -27,16 +25,16 @@ namespace AppSystem.Forms
 
         private void LoadDataGridView(string name)
         {
-            var result = RepositoryUf.Get(
-                x => x.Name,
-                x => x.Name.Contains(name),
-                x => new
-                {
-                    x.Id,
-                    x.Name
-                }
-            )
-            .ToList();
+            var result = Database.Uf
+                .OrderBy(x => x.Name)
+                .Where(x => x.Name.Contains(name))
+                .Select(x => new                    
+                    {
+                        x.Id,
+                        x.Name
+                    }
+                )
+                .ToList();
             DataGridViewUf.DataSource = result;
         }
 
@@ -50,7 +48,7 @@ namespace AppSystem.Forms
             object value = ((DataGridView)sender)?.Rows[e.RowIndex]?.Cells[0].Value;
             if (int.TryParse(value.ToString(), out int id))
             {
-                FrmUfUpdate form = new FrmUfUpdate(Database, RepositoryUf, id);
+                FrmUfUpdate form = new FrmUfUpdate(Database, id);
                 form.ShowDialog();
                 LoadDataGridView("");
             }
@@ -68,7 +66,7 @@ namespace AppSystem.Forms
 
         private void ButNew_ButtonOnClick(object sender, EventArgs e)
         {
-            FrmUfUpdate form = new FrmUfUpdate(Database, RepositoryUf);
+            FrmUfUpdate form = new FrmUfUpdate(Database);
             form.ShowDialog();
             LoadDataGridView("");
         }

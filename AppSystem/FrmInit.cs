@@ -34,5 +34,21 @@ namespace AppSystem
             FrmCityList form = new FrmCityList(Database);
             form.ShowDialog();
         }
+
+        private void sairToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox
+                    .Show(
+                        "Deseja sair?", 
+                        "AppSystem", 
+                        MessageBoxButtons.YesNo, 
+                        MessageBoxIcon.Question,
+                        MessageBoxDefaultButton.Button2
+                    ) == DialogResult.Yes
+            )
+            {
+                Close();
+            }
+        }
     }
 }

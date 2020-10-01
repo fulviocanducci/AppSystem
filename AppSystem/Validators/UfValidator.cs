@@ -13,7 +13,7 @@ namespace AppSystem.Validators
 
             RuleFor(p => p.Name)
                 .NotEmpty().WithMessage("Uf tem 2 caracteres")
-                .MaximumLength(2).WithMessage("Uf com 2 caracteres")
+                .MinimumLength(2).WithMessage("Uf com 2 caracteres")                
                 .Must(BeValidUfExist).WithMessage("Uf existente");
         }
 

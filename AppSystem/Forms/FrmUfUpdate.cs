@@ -1,27 +1,27 @@
 ﻿using AppSystem.Data;
 using AppSystem.Extensions;
 using AppSystem.Models;
-using AppSystem.Repository;
 using AppSystem.Validators;
 using FluentValidation.Results;
 using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace AppSystem.Forms
 {
     public partial class FrmUfUpdate : Form
     {
-        public FrmUfUpdate(Database database, AbstractRepositoryUf repositoryUf, int id = 0)
+        public UfValidator Validator { get; }
+        public Database Database { get; }
+        public int Id { get; }
+
+        public FrmUfUpdate(Database database, int id = 0)
         {
             InitializeComponent();
-            Id = id;
-            RepositoryUf = repositoryUf;
             Validator = new UfValidator(database);
+            Database = database;
+            Id = id;
         }
-
-        public AbstractRepositoryUf RepositoryUf { get; }
-        public UfValidator Validator { get; }
-        public int Id { get; }
 
         private void ButEnd_Click(object sender, EventArgs e)
         {
@@ -33,14 +33,14 @@ namespace AppSystem.Forms
             AcceptButton = ButSalve.ButtonReference;
             CancelButton = ButClose.ButtonReference;
             TxtName.Text = "";
-            ButSalve.Tag = "Add";
+            ButSalve.Tag = Operation.Insert;
             if (Id > 0)
             {
-                Uf uf = RepositoryUf.GetOne(x => x.Id == Id);
+                Uf uf = Database.Uf.AsNoTracking().FirstOrDefault(x => x.Id == Id);
                 if (uf != null)
                 {
                     TxtName.Text = uf.Name;
-                    ButSalve.Tag = "Update";
+                    ButSalve.Tag = Operation.Update;
                 }
                 else
                 {
@@ -61,18 +61,22 @@ namespace AppSystem.Forms
             {
                 switch (ButSalve.Tag)
                 {
-                    case "Add":
-                        RepositoryUf.Add(uf);
+                    case Operation.Insert:
+                        Database.Uf.Add(uf);
                         break;
-                    case "Update":
-                        RepositoryUf.Update(uf);
+                    case Operation.Update:
+                        Database.Entry(uf).State = System.Data.Entity.EntityState.Modified;
                         break;
                 }
-                MessageBox.Show(
-                    "Dados atualizados com êxito", "Aviso",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
+                if (Database.SaveChanges() > 0)
+                {
+                    MessageBox.Show(
+                       "Dados atualizados com êxito", "Aviso",
+                       MessageBoxButtons.OK,
+                       MessageBoxIcon.Information
+                   );
+                }
+                Database.Entry(uf).State = System.Data.Entity.EntityState.Detached;
                 Close();
             }
             else

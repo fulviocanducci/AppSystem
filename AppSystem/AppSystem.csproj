@@ -70,6 +70,7 @@
     <Compile Include="Components\ButtonIcon.cs" />
     <Compile Include="Data\Config.cs" />
     <Compile Include="Data\Database.cs" />
+    <Compile Include="Data\Operation.cs" />
     <Compile Include="Extensions\AppSystemExtensions.cs" />
     <Compile Include="Forms\FrmCityList.cs">
       <SubType>Form</SubType>
@@ -141,6 +142,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -158,6 +160,12 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconfinder_Exit_32467.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconfinder_table_insert_64765.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

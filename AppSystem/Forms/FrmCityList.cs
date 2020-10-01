@@ -1,30 +1,28 @@
 ﻿using AppSystem.Data;
 using AppSystem.Repository;
 using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace AppSystem.Forms
 {
     public partial class FrmCityList : Form
-    {
-        public AbstractRepositoryCity RepositoryCity { get; }
-        
+    {        
         public Database Database { get; }
 
         public FrmCityList(Database database)
         {
             InitializeComponent();
-            RepositoryCity = new RepositoryCity(database);
             Database = database;
         }        
 
         private void LoadDataGridView(string name)
         {
-            var result = RepositoryCity.Get(
-                x => x.Name, 
-                x => x.Name.Contains(name), 
-                x => new { x.Id, x.Name, Uf = x.Uf.Name }
-            );
+            var result = Database.City
+                .OrderBy(x => x.Name)
+                .Where(x => x.Name.Contains(name))
+                .Select(x => new { x.Id, x.Name, Uf = x.Uf.Name })
+                .ToList();
             DataGridViewCity.DataSource = result;
         }
 
@@ -50,7 +48,7 @@ namespace AppSystem.Forms
             object value = ((DataGridView)sender)?.Rows[e.RowIndex]?.Cells[0].Value;
             if (int.TryParse(value.ToString(), out int id))
             {
-                FrmCityUpdate form = new FrmCityUpdate(Database, RepositoryCity, id);
+                FrmCityUpdate form = new FrmCityUpdate(Database, id);
                 form.ShowDialog();
                 LoadDataGridView("");
             }
@@ -58,7 +56,7 @@ namespace AppSystem.Forms
 
         private void ButNew_ButtonOnClick(object sender, EventArgs e)
         {
-            FrmCityUpdate form = new FrmCityUpdate(Database, RepositoryCity);
+            FrmCityUpdate form = new FrmCityUpdate(Database);
             form.ShowDialog();
             LoadDataGridView("");
         }

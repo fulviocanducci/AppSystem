@@ -50,7 +50,7 @@
             this.TxtFind.Location = new System.Drawing.Point(11, 32);
             this.TxtFind.Name = "TxtFind";
             this.TxtFind.Size = new System.Drawing.Size(332, 20);
-            this.TxtFind.TabIndex = 7;            
+            this.TxtFind.TabIndex = 7;
             this.TxtFind.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtFind_KeyUp);
             // 
             // DataGridViewCity
@@ -169,7 +169,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(493, 292);
+            this.ClientSize = new System.Drawing.Size(489, 292);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ButFind);
             this.Controls.Add(this.ButClose);
