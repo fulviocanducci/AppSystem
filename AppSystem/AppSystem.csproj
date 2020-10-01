@@ -91,6 +91,7 @@
       <DependentUpon>FrmInit.cs</DependentUpon>
     </Compile>
     <Compile Include="Maps\CityMap.cs" />
+    <Compile Include="Maps\UfMap.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\Uf.cs" />
     <Compile Include="Program.cs" />
