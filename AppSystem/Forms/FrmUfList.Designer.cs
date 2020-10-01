@@ -33,12 +33,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.DataGridViewUf = new System.Windows.Forms.DataGridView();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Uf = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ButEnd = new System.Windows.Forms.Button();
             this.TxtFind = new System.Windows.Forms.TextBox();
             this.ButFind = new System.Windows.Forms.Button();
             this.ButNew = new System.Windows.Forms.Button();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Uf = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewUf)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,7 +48,7 @@
             this.DataGridViewUf.AllowUserToDeleteRows = false;
             this.DataGridViewUf.AllowUserToResizeColumns = false;
             this.DataGridViewUf.AllowUserToResizeRows = false;
-            this.DataGridViewUf.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.DataGridViewUf.BackgroundColor = System.Drawing.Color.White;
             this.DataGridViewUf.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DataGridViewUf.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
@@ -77,28 +77,13 @@
             this.DataGridViewUf.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.DataGridViewUf.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.DataGridViewUf.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DataGridViewUf.ShowCellErrors = false;
+            this.DataGridViewUf.ShowCellToolTips = false;
+            this.DataGridViewUf.ShowEditingIcon = false;
+            this.DataGridViewUf.ShowRowErrors = false;
             this.DataGridViewUf.Size = new System.Drawing.Size(219, 180);
             this.DataGridViewUf.TabIndex = 0;
             this.DataGridViewUf.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewUf_CellDoubleClick);
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "Id";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Id.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.Width = 50;
-            // 
-            // Uf
-            // 
-            this.Uf.DataPropertyName = "Name";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Uf.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Uf.HeaderText = "Uf";
-            this.Uf.Name = "Uf";
-            this.Uf.ReadOnly = true;
             // 
             // ButEnd
             // 
@@ -138,6 +123,26 @@
             this.ButNew.UseVisualStyleBackColor = true;
             this.ButNew.Click += new System.EventHandler(this.ButNew_Click);
             // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Id.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Width = 52;
+            // 
+            // Uf
+            // 
+            this.Uf.DataPropertyName = "Name";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Uf.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Uf.HeaderText = "Uf";
+            this.Uf.Name = "Uf";
+            this.Uf.ReadOnly = true;
+            this.Uf.Width = 106;
+            // 
             // FrmUfList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -167,11 +172,11 @@
         #endregion
 
         private System.Windows.Forms.DataGridView DataGridViewUf;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Uf;
         private System.Windows.Forms.Button ButEnd;
         private System.Windows.Forms.TextBox TxtFind;
         private System.Windows.Forms.Button ButFind;
         private System.Windows.Forms.Button ButNew;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Uf;
     }
 }

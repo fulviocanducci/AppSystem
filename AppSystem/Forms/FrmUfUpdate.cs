@@ -65,7 +65,10 @@ namespace AppSystem.Forms
                         Database.Entry(uf).State = System.Data.Entity.EntityState.Modified;
                         break;
                 }
-                Database.SaveChanges();
+                if (Database.SaveChanges() > 0)
+                {
+                    MessageBox.Show("Dados atualizados com êxito", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
                 Database.Entry(uf).State = System.Data.Entity.EntityState.Detached;
                 ButEnd.PerformClick();
             }

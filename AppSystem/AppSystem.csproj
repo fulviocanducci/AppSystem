@@ -60,6 +60,18 @@
   <ItemGroup>
     <Compile Include="Data\Config.cs" />
     <Compile Include="Data\Database.cs" />
+    <Compile Include="Forms\FrmCityList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmCityList.Designer.cs">
+      <DependentUpon>FrmCityList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmCityUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmCityUpdate.Designer.cs">
+      <DependentUpon>FrmCityUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FrmUfList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +95,12 @@
     <Compile Include="Models\Uf.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\FrmCityList.resx">
+      <DependentUpon>FrmCityList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmCityUpdate.resx">
+      <DependentUpon>FrmCityUpdate.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmUfList.resx">
       <DependentUpon>FrmUfList.cs</DependentUpon>
     </EmbeddedResource>

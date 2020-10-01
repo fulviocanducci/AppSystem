@@ -28,5 +28,11 @@ namespace AppSystem
             FrmUfList form = new FrmUfList(Database);
             form.ShowDialog();
         }
+
+        private void cidadeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmCityList form = new FrmCityList(Database);
+            form.ShowDialog();
+        }
     }
 }
