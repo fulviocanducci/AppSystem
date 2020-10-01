@@ -107,6 +107,12 @@
     <Compile Include="Models\Uf.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\AbstractRepository.cs" />
+    <Compile Include="Repository\AbstractRepositoryCity.cs" />
+    <Compile Include="Repository\AbstractRepositoryUf.cs" />
+    <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="Repository\RepositoryCity.cs" />
+    <Compile Include="Repository\RepositoryUf.cs" />
     <Compile Include="Validators\CityValidator.cs" />
     <Compile Include="Validators\UfValidator.cs" />
     <EmbeddedResource Include="Components\Button.resx">

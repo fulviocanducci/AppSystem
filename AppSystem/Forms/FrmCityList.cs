@@ -1,34 +1,31 @@
 ﻿using AppSystem.Data;
-using AppSystem.Models;
+using AppSystem.Repository;
 using System;
-using System.Data;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace AppSystem.Forms
 {
     public partial class FrmCityList : Form
     {
+        public AbstractRepositoryCity RepositoryCity { get; }
+        
+        public Database Database { get; }
+
         public FrmCityList(Database database)
         {
             InitializeComponent();
+            RepositoryCity = new RepositoryCity(database);
             Database = database;
-        }
+        }        
 
-        public Database Database { get; }
         private void LoadDataGridView(string name)
         {
-            IQueryable<City> query = Database.City.AsNoTracking();
-            var select = query.OrderBy(o => o.Name).Select(x => new
-            {
-                x.Id,
-                x.Name,
-                Uf = x.Uf.Name
-            });
-            DataGridViewCity.DataSource =
-                string.IsNullOrEmpty(name)
-                ? select.ToList()
-                : select.Where(x => x.Name.Contains(name)).ToList();
+            var result = RepositoryCity.Get(
+                x => x.Name, 
+                x => x.Name.Contains(name), 
+                x => new { x.Id, x.Name, Uf = x.Uf.Name }
+            );
+            DataGridViewCity.DataSource = result;
         }
 
         private void ButEnd_Click(object sender, EventArgs e)
@@ -37,7 +34,7 @@ namespace AppSystem.Forms
         }
 
         private void FrmCityList_Load(object sender, EventArgs e)
-        {            
+        {
             CancelButton = ButClose.ButtonReference;
             DataGridViewCity.AutoGenerateColumns = false;
             LoadDataGridView("");
@@ -53,7 +50,7 @@ namespace AppSystem.Forms
             object value = ((DataGridView)sender)?.Rows[e.RowIndex]?.Cells[0].Value;
             if (int.TryParse(value.ToString(), out int id))
             {
-                FrmCityUpdate form = new FrmCityUpdate(Database, id);
+                FrmCityUpdate form = new FrmCityUpdate(Database, RepositoryCity, id);
                 form.ShowDialog();
                 LoadDataGridView("");
             }
@@ -61,7 +58,7 @@ namespace AppSystem.Forms
 
         private void ButNew_ButtonOnClick(object sender, EventArgs e)
         {
-            FrmCityUpdate form = new FrmCityUpdate(Database);
+            FrmCityUpdate form = new FrmCityUpdate(Database, RepositoryCity);
             form.ShowDialog();
             LoadDataGridView("");
         }

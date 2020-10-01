@@ -1,5 +1,5 @@
 ﻿using AppSystem.Data;
-using AppSystem.Models;
+using AppSystem.Repository;
 using System;
 using System.Linq;
 using System.Windows.Forms;
@@ -8,16 +8,18 @@ namespace AppSystem.Forms
 {
     public partial class FrmUfList : Form
     {
+        public Database Database { get; }
+        public AbstractRepositoryUf RepositoryUf { get; }
+
         public FrmUfList(Database database)
         {
             InitializeComponent();
             Database = database;
+            RepositoryUf = new RepositoryUf(database);
         }
 
-        public Database Database { get; }
-
         private void FrmUfList_Load(object sender, EventArgs e)
-        {            
+        {
             CancelButton = ButClose.ButtonReference;
             DataGridViewUf.AutoGenerateColumns = false;
             LoadDataGridView("");
@@ -25,11 +27,17 @@ namespace AppSystem.Forms
 
         private void LoadDataGridView(string name)
         {
-            IQueryable<Uf> query = Database.Uf.AsNoTracking();
-            DataGridViewUf.DataSource =
-                string.IsNullOrEmpty(name)
-                ? query.OrderBy(o => o.Name).ToList()
-                : query.Where(x => x.Name.Contains(name)).OrderBy(o => o.Name).ToList();
+            var result = RepositoryUf.Get(
+                x => x.Name,
+                x => x.Name.Contains(name),
+                x => new
+                {
+                    x.Id,
+                    x.Name
+                }
+            )
+            .ToList();
+            DataGridViewUf.DataSource = result;
         }
 
         private void ButEnd_Click(object sender, EventArgs e)
@@ -42,7 +50,7 @@ namespace AppSystem.Forms
             object value = ((DataGridView)sender)?.Rows[e.RowIndex]?.Cells[0].Value;
             if (int.TryParse(value.ToString(), out int id))
             {
-                FrmUfUpdate form = new FrmUfUpdate(Database, id);
+                FrmUfUpdate form = new FrmUfUpdate(Database, RepositoryUf, id);
                 form.ShowDialog();
                 LoadDataGridView("");
             }
@@ -60,7 +68,7 @@ namespace AppSystem.Forms
 
         private void ButNew_ButtonOnClick(object sender, EventArgs e)
         {
-            FrmUfUpdate form = new FrmUfUpdate(Database);
+            FrmUfUpdate form = new FrmUfUpdate(Database, RepositoryUf);
             form.ShowDialog();
             LoadDataGridView("");
         }

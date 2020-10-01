@@ -1,25 +1,25 @@
 ﻿using AppSystem.Data;
 using AppSystem.Extensions;
 using AppSystem.Models;
+using AppSystem.Repository;
 using AppSystem.Validators;
 using FluentValidation.Results;
 using System;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace AppSystem.Forms
 {
     public partial class FrmUfUpdate : Form
     {
-        public FrmUfUpdate(Database database, int id = 0)
+        public FrmUfUpdate(Database database, AbstractRepositoryUf repositoryUf, int id = 0)
         {
             InitializeComponent();
-            Database = database;
             Id = id;
+            RepositoryUf = repositoryUf;
             Validator = new UfValidator(database);
         }
 
-        public Database Database { get; }
+        public AbstractRepositoryUf RepositoryUf { get; }
         public UfValidator Validator { get; }
         public int Id { get; }
 
@@ -36,7 +36,7 @@ namespace AppSystem.Forms
             ButSalve.Tag = "Add";
             if (Id > 0)
             {
-                Uf uf = Database.Uf.AsNoTracking().FirstOrDefault(x => x.Id == Id);
+                Uf uf = RepositoryUf.GetOne(x => x.Id == Id);
                 if (uf != null)
                 {
                     TxtName.Text = uf.Name;
@@ -62,17 +62,17 @@ namespace AppSystem.Forms
                 switch (ButSalve.Tag)
                 {
                     case "Add":
-                        Database.Uf.Add(uf);
+                        RepositoryUf.Add(uf);
                         break;
                     case "Update":
-                        Database.Entry(uf).State = System.Data.Entity.EntityState.Modified;
+                        RepositoryUf.Update(uf);
                         break;
                 }
-                if (Database.SaveChanges() > 0)
-                {
-                    MessageBox.Show("Dados atualizados com êxito", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                Database.Entry(uf).State = System.Data.Entity.EntityState.Detached;
+                MessageBox.Show(
+                    "Dados atualizados com êxito", "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
                 Close();
             }
             else

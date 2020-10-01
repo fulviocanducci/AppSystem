@@ -32,6 +32,8 @@
             this.TxtName = new System.Windows.Forms.TextBox();
             this.ButClose = new AppSystem.Components.Button();
             this.ButSalve = new AppSystem.Components.Button();
+            this.button1 = new AppSystem.Components.Button();
+            this.button2 = new AppSystem.Components.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -72,13 +74,33 @@
             this.ButSalve.TabIndex = 18;
             this.ButSalve.ButtonOnClick += new AppSystem.Components.Button.ButtonClick(this.ButSalve_ButtonOnClick);
             // 
+            // button1
+            // 
+            this.button1.Icon = AppSystem.Components.ButtonIcon.Save;
+            this.button1.Label = "Salvar";
+            this.button1.Location = new System.Drawing.Point(10, 55);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(121, 37);
+            this.button1.TabIndex = 22;
+            this.button1.ButtonOnClick += new AppSystem.Components.Button.ButtonClick(this.ButSalve_ButtonOnClick);
+            // 
+            // button2
+            // 
+            this.button2.Icon = AppSystem.Components.ButtonIcon.Close;
+            this.button2.Label = "Fecha&r";
+            this.button2.Location = new System.Drawing.Point(145, 55);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(121, 37);
+            this.button2.TabIndex = 21;
+            this.button2.ButtonOnClick += new AppSystem.Components.Button.ButtonClick(this.ButClose_ButtonOnClick);
+            // 
             // FrmUfUpdate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(276, 104);
-            this.Controls.Add(this.ButSalve);
-            this.Controls.Add(this.ButClose);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.TxtName);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -100,5 +122,7 @@
         private System.Windows.Forms.TextBox TxtName;
         private Components.Button ButClose;
         private Components.Button ButSalve;
+        private Components.Button button1;
+        private Components.Button button2;
     }
 }
