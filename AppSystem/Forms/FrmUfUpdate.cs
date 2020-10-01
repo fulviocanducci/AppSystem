@@ -11,7 +11,7 @@ namespace AppSystem.Forms
         public FrmUfUpdate(Database database, int id = 0)
         {
             InitializeComponent();
-            Database = database;
+            Database = database; 
             Id = id;
         }
 
