@@ -1,13 +1,8 @@
 ﻿using AppSystem.Data;
 using AppSystem.Models;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AppSystem.Forms
@@ -42,7 +37,8 @@ namespace AppSystem.Forms
         }
 
         private void FrmCityList_Load(object sender, EventArgs e)
-        {
+        {            
+            CancelButton = ButClose.ButtonReference;
             DataGridViewCity.AutoGenerateColumns = false;
             LoadDataGridView("");
         }
@@ -50,13 +46,6 @@ namespace AppSystem.Forms
         private void ButFind_Click(object sender, EventArgs e)
         {
             LoadDataGridView(TxtFind.Text);
-        }
-
-        private void ButNew_Click(object sender, EventArgs e)
-        {
-            FrmCityUpdate form = new FrmCityUpdate(Database);
-            form.ShowDialog();
-            LoadDataGridView("");
         }
 
         private void DataGridViewCity_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -67,6 +56,32 @@ namespace AppSystem.Forms
                 FrmCityUpdate form = new FrmCityUpdate(Database, id);
                 form.ShowDialog();
                 LoadDataGridView("");
+            }
+        }
+
+        private void ButNew_ButtonOnClick(object sender, EventArgs e)
+        {
+            FrmCityUpdate form = new FrmCityUpdate(Database);
+            form.ShowDialog();
+            LoadDataGridView("");
+        }
+
+
+        private void ButClose_ButtonOnClick(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void ButFind_ButtonOnClick(object sender, EventArgs e)
+        {
+            LoadDataGridView(TxtFind.Text);
+        }
+
+        private void TxtFind_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                ButFind.ButtonReference.PerformClick();
             }
         }
     }

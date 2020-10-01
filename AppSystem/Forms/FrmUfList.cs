@@ -17,7 +17,8 @@ namespace AppSystem.Forms
         public Database Database { get; }
 
         private void FrmUfList_Load(object sender, EventArgs e)
-        {
+        {            
+            CancelButton = ButClose.ButtonReference;
             DataGridViewUf.AutoGenerateColumns = false;
             LoadDataGridView("");
         }
@@ -36,18 +37,6 @@ namespace AppSystem.Forms
             Close();
         }
 
-        private void ButFind_Click(object sender, EventArgs e)
-        {
-            LoadDataGridView(TxtFind.Text);
-        }
-
-        private void ButNew_Click(object sender, EventArgs e)
-        {
-            FrmUfUpdate form = new FrmUfUpdate(Database);
-            form.ShowDialog();
-            LoadDataGridView("");
-        }
-
         private void DataGridViewUf_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             object value = ((DataGridView)sender)?.Rows[e.RowIndex]?.Cells[0].Value;
@@ -56,6 +45,31 @@ namespace AppSystem.Forms
                 FrmUfUpdate form = new FrmUfUpdate(Database, id);
                 form.ShowDialog();
                 LoadDataGridView("");
+            }
+        }
+
+        private void ButFind_ButtonOnClick(object sender, EventArgs e)
+        {
+            LoadDataGridView(TxtFind.Text);
+        }
+
+        private void ButClose_ButtonOnClick(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void ButNew_ButtonOnClick(object sender, EventArgs e)
+        {
+            FrmUfUpdate form = new FrmUfUpdate(Database);
+            form.ShowDialog();
+            LoadDataGridView("");
+        }
+
+        private void TxtFind_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                ButFind.ButtonReference.PerformClick();
             }
         }
     }

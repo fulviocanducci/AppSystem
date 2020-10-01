@@ -28,17 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.DataGridViewUf = new System.Windows.Forms.DataGridView();
-            this.ButEnd = new System.Windows.Forms.Button();
-            this.TxtFind = new System.Windows.Forms.TextBox();
-            this.ButFind = new System.Windows.Forms.Button();
-            this.ButNew = new System.Windows.Forms.Button();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Uf = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TxtFind = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.ButClose = new AppSystem.Components.Button();
+            this.ButNew = new AppSystem.Components.Button();
+            this.ButFind = new AppSystem.Components.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewUf)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,27 +54,27 @@
             this.DataGridViewUf.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
             this.Uf});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DataGridViewUf.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataGridViewUf.DefaultCellStyle = dataGridViewCellStyle7;
             this.DataGridViewUf.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.DataGridViewUf.Location = new System.Drawing.Point(12, 46);
+            this.DataGridViewUf.Location = new System.Drawing.Point(12, 67);
             this.DataGridViewUf.MultiSelect = false;
             this.DataGridViewUf.Name = "DataGridViewUf";
             this.DataGridViewUf.ReadOnly = true;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGridViewUf.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridViewUf.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.DataGridViewUf.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.DataGridViewUf.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.DataGridViewUf.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -81,53 +82,15 @@
             this.DataGridViewUf.ShowCellToolTips = false;
             this.DataGridViewUf.ShowEditingIcon = false;
             this.DataGridViewUf.ShowRowErrors = false;
-            this.DataGridViewUf.Size = new System.Drawing.Size(219, 180);
+            this.DataGridViewUf.Size = new System.Drawing.Size(261, 180);
             this.DataGridViewUf.TabIndex = 0;
             this.DataGridViewUf.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewUf_CellDoubleClick);
-            // 
-            // ButEnd
-            // 
-            this.ButEnd.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.ButEnd.Location = new System.Drawing.Point(156, 235);
-            this.ButEnd.Name = "ButEnd";
-            this.ButEnd.Size = new System.Drawing.Size(75, 23);
-            this.ButEnd.TabIndex = 1;
-            this.ButEnd.Text = "Sai&r";
-            this.ButEnd.UseVisualStyleBackColor = true;
-            this.ButEnd.Click += new System.EventHandler(this.ButEnd_Click);
-            // 
-            // TxtFind
-            // 
-            this.TxtFind.Location = new System.Drawing.Point(13, 19);
-            this.TxtFind.Name = "TxtFind";
-            this.TxtFind.Size = new System.Drawing.Size(182, 20);
-            this.TxtFind.TabIndex = 2;
-            // 
-            // ButFind
-            // 
-            this.ButFind.Location = new System.Drawing.Point(202, 17);
-            this.ButFind.Name = "ButFind";
-            this.ButFind.Size = new System.Drawing.Size(30, 23);
-            this.ButFind.TabIndex = 3;
-            this.ButFind.Text = "...";
-            this.ButFind.UseVisualStyleBackColor = true;
-            this.ButFind.Click += new System.EventHandler(this.ButFind_Click);
-            // 
-            // ButNew
-            // 
-            this.ButNew.Location = new System.Drawing.Point(13, 235);
-            this.ButNew.Name = "ButNew";
-            this.ButNew.Size = new System.Drawing.Size(75, 23);
-            this.ButNew.TabIndex = 4;
-            this.ButNew.Text = "&Novo";
-            this.ButNew.UseVisualStyleBackColor = true;
-            this.ButNew.Click += new System.EventHandler(this.ButNew_Click);
             // 
             // Id
             // 
             this.Id.DataPropertyName = "Id";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Id.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Id.DefaultCellStyle = dataGridViewCellStyle5;
             this.Id.HeaderText = "Id";
             this.Id.Name = "Id";
             this.Id.ReadOnly = true;
@@ -136,23 +99,71 @@
             // Uf
             // 
             this.Uf.DataPropertyName = "Name";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Uf.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Uf.DefaultCellStyle = dataGridViewCellStyle6;
             this.Uf.HeaderText = "Uf";
             this.Uf.Name = "Uf";
             this.Uf.ReadOnly = true;
-            this.Uf.Width = 106;
+            this.Uf.Width = 147;
+            // 
+            // TxtFind
+            // 
+            this.TxtFind.Location = new System.Drawing.Point(13, 41);
+            this.TxtFind.MaxLength = 2;
+            this.TxtFind.Name = "TxtFind";
+            this.TxtFind.Size = new System.Drawing.Size(126, 20);
+            this.TxtFind.TabIndex = 2;
+            this.TxtFind.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtFind_KeyUp);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(60, 13);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "Digite a Uf:";
+            // 
+            // ButClose
+            // 
+            this.ButClose.Icon = AppSystem.Components.ButtonIcon.Close;
+            this.ButClose.Label = "Fecha&r";
+            this.ButClose.Location = new System.Drawing.Point(152, 253);
+            this.ButClose.Name = "ButClose";
+            this.ButClose.Size = new System.Drawing.Size(121, 37);
+            this.ButClose.TabIndex = 16;
+            this.ButClose.ButtonOnClick += new AppSystem.Components.Button.ButtonClick(this.ButClose_ButtonOnClick);
+            // 
+            // ButNew
+            // 
+            this.ButNew.Icon = AppSystem.Components.ButtonIcon.Add;
+            this.ButNew.Label = "&Novo";
+            this.ButNew.Location = new System.Drawing.Point(10, 253);
+            this.ButNew.Name = "ButNew";
+            this.ButNew.Size = new System.Drawing.Size(121, 37);
+            this.ButNew.TabIndex = 15;
+            this.ButNew.ButtonOnClick += new AppSystem.Components.Button.ButtonClick(this.ButNew_ButtonOnClick);
+            // 
+            // ButFind
+            // 
+            this.ButFind.Icon = AppSystem.Components.ButtonIcon.Search;
+            this.ButFind.Label = "Busca";
+            this.ButFind.Location = new System.Drawing.Point(152, 24);
+            this.ButFind.Name = "ButFind";
+            this.ButFind.Size = new System.Drawing.Size(121, 37);
+            this.ButFind.TabIndex = 13;
+            this.ButFind.ButtonOnClick += new AppSystem.Components.Button.ButtonClick(this.ButFind_ButtonOnClick);
             // 
             // FrmUfList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.ButEnd;
-            this.ClientSize = new System.Drawing.Size(244, 268);
+            this.ClientSize = new System.Drawing.Size(282, 301);
+            this.Controls.Add(this.ButClose);
             this.Controls.Add(this.ButNew);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.ButFind);
             this.Controls.Add(this.TxtFind);
-            this.Controls.Add(this.ButEnd);
             this.Controls.Add(this.DataGridViewUf);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
@@ -172,10 +183,11 @@
         #endregion
 
         private System.Windows.Forms.DataGridView DataGridViewUf;
-        private System.Windows.Forms.Button ButEnd;
         private System.Windows.Forms.TextBox TxtFind;
-        private System.Windows.Forms.Button ButFind;
-        private System.Windows.Forms.Button ButNew;
+        private Components.Button ButFind;
+        private System.Windows.Forms.Label label1;
+        private Components.Button ButClose;
+        private Components.Button ButNew;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Uf;
     }

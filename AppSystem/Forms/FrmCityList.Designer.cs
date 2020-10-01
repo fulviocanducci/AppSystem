@@ -33,54 +33,25 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.ButNew = new System.Windows.Forms.Button();
-            this.ButFind = new System.Windows.Forms.Button();
             this.TxtFind = new System.Windows.Forms.TextBox();
-            this.ButEnd = new System.Windows.Forms.Button();
             this.DataGridViewCity = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Uf = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.ButFind = new AppSystem.Components.Button();
+            this.ButClose = new AppSystem.Components.Button();
+            this.ButNew = new AppSystem.Components.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewCity)).BeginInit();
             this.SuspendLayout();
             // 
-            // ButNew
-            // 
-            this.ButNew.Location = new System.Drawing.Point(13, 230);
-            this.ButNew.Name = "ButNew";
-            this.ButNew.Size = new System.Drawing.Size(75, 23);
-            this.ButNew.TabIndex = 9;
-            this.ButNew.Text = "&Novo";
-            this.ButNew.UseVisualStyleBackColor = true;
-            this.ButNew.Click += new System.EventHandler(this.ButNew_Click);
-            // 
-            // ButFind
-            // 
-            this.ButFind.Location = new System.Drawing.Point(448, 13);
-            this.ButFind.Name = "ButFind";
-            this.ButFind.Size = new System.Drawing.Size(30, 23);
-            this.ButFind.TabIndex = 8;
-            this.ButFind.Text = "...";
-            this.ButFind.UseVisualStyleBackColor = true;
-            this.ButFind.Click += new System.EventHandler(this.ButFind_Click);
-            // 
             // TxtFind
             // 
-            this.TxtFind.Location = new System.Drawing.Point(13, 14);
+            this.TxtFind.Location = new System.Drawing.Point(11, 32);
             this.TxtFind.Name = "TxtFind";
-            this.TxtFind.Size = new System.Drawing.Size(429, 20);
-            this.TxtFind.TabIndex = 7;
-            // 
-            // ButEnd
-            // 
-            this.ButEnd.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.ButEnd.Location = new System.Drawing.Point(403, 230);
-            this.ButEnd.Name = "ButEnd";
-            this.ButEnd.Size = new System.Drawing.Size(75, 23);
-            this.ButEnd.TabIndex = 6;
-            this.ButEnd.Text = "Sai&r";
-            this.ButEnd.UseVisualStyleBackColor = true;
-            this.ButEnd.Click += new System.EventHandler(this.ButEnd_Click);
+            this.TxtFind.Size = new System.Drawing.Size(332, 20);
+            this.TxtFind.TabIndex = 7;            
+            this.TxtFind.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtFind_KeyUp);
             // 
             // DataGridViewCity
             // 
@@ -103,7 +74,7 @@
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DataGridViewCity.DefaultCellStyle = dataGridViewCellStyle4;
             this.DataGridViewCity.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.DataGridViewCity.Location = new System.Drawing.Point(12, 41);
+            this.DataGridViewCity.Location = new System.Drawing.Point(11, 58);
             this.DataGridViewCity.MultiSelect = false;
             this.DataGridViewCity.Name = "DataGridViewCity";
             this.DataGridViewCity.ReadOnly = true;
@@ -155,16 +126,55 @@
             this.Uf.ReadOnly = true;
             this.Uf.Width = 50;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(11, 17);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(125, 13);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "Digite o nome da cidade:";
+            // 
+            // ButFind
+            // 
+            this.ButFind.Icon = AppSystem.Components.ButtonIcon.Search;
+            this.ButFind.Label = "Busca";
+            this.ButFind.Location = new System.Drawing.Point(356, 15);
+            this.ButFind.Name = "ButFind";
+            this.ButFind.Size = new System.Drawing.Size(121, 37);
+            this.ButFind.TabIndex = 12;
+            this.ButFind.ButtonOnClick += new AppSystem.Components.Button.ButtonClick(this.ButFind_ButtonOnClick);
+            // 
+            // ButClose
+            // 
+            this.ButClose.Icon = AppSystem.Components.ButtonIcon.Close;
+            this.ButClose.Label = "Fecha&r";
+            this.ButClose.Location = new System.Drawing.Point(356, 244);
+            this.ButClose.Name = "ButClose";
+            this.ButClose.Size = new System.Drawing.Size(121, 37);
+            this.ButClose.TabIndex = 11;
+            this.ButClose.ButtonOnClick += new AppSystem.Components.Button.ButtonClick(this.ButClose_ButtonOnClick);
+            // 
+            // ButNew
+            // 
+            this.ButNew.Icon = AppSystem.Components.ButtonIcon.Add;
+            this.ButNew.Label = "&Novo";
+            this.ButNew.Location = new System.Drawing.Point(10, 244);
+            this.ButNew.Name = "ButNew";
+            this.ButNew.Size = new System.Drawing.Size(121, 37);
+            this.ButNew.TabIndex = 10;
+            this.ButNew.ButtonOnClick += new AppSystem.Components.Button.ButtonClick(this.ButNew_ButtonOnClick);
+            // 
             // FrmCityList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.ButEnd;
-            this.ClientSize = new System.Drawing.Size(493, 265);
-            this.Controls.Add(this.ButNew);
+            this.ClientSize = new System.Drawing.Size(493, 292);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.ButFind);
+            this.Controls.Add(this.ButClose);
+            this.Controls.Add(this.ButNew);
             this.Controls.Add(this.TxtFind);
-            this.Controls.Add(this.ButEnd);
             this.Controls.Add(this.DataGridViewCity);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
@@ -181,14 +191,14 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button ButNew;
-        private System.Windows.Forms.Button ButFind;
         private System.Windows.Forms.TextBox TxtFind;
-        private System.Windows.Forms.Button ButEnd;
         private System.Windows.Forms.DataGridView DataGridViewCity;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cidade;
         private System.Windows.Forms.DataGridViewTextBoxColumn Uf;
+        private Components.Button ButNew;
+        private Components.Button ButClose;
+        private Components.Button ButFind;
+        private System.Windows.Forms.Label label1;
     }
 }

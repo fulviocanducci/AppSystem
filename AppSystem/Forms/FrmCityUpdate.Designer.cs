@@ -28,34 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ButEnd = new System.Windows.Forms.Button();
-            this.BtnSave = new System.Windows.Forms.Button();
             this.TxtName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.CmbUf = new System.Windows.Forms.ComboBox();
+            this.ButSalve = new AppSystem.Components.Button();
+            this.ButClose = new AppSystem.Components.Button();
             this.SuspendLayout();
-            // 
-            // ButEnd
-            // 
-            this.ButEnd.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.ButEnd.Location = new System.Drawing.Point(411, 113);
-            this.ButEnd.Name = "ButEnd";
-            this.ButEnd.Size = new System.Drawing.Size(75, 23);
-            this.ButEnd.TabIndex = 5;
-            this.ButEnd.Text = "Sai&r";
-            this.ButEnd.UseVisualStyleBackColor = true;
-            this.ButEnd.Click += new System.EventHandler(this.ButEnd_Click);
-            // 
-            // BtnSave
-            // 
-            this.BtnSave.Location = new System.Drawing.Point(13, 113);
-            this.BtnSave.Name = "BtnSave";
-            this.BtnSave.Size = new System.Drawing.Size(75, 23);
-            this.BtnSave.TabIndex = 4;
-            this.BtnSave.Text = "&Salvar";
-            this.BtnSave.UseVisualStyleBackColor = true;
-            this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // TxtName
             // 
@@ -92,17 +71,35 @@
             this.CmbUf.Size = new System.Drawing.Size(473, 21);
             this.CmbUf.TabIndex = 3;
             // 
+            // ButSalve
+            // 
+            this.ButSalve.Icon = AppSystem.Components.ButtonIcon.Save;
+            this.ButSalve.Label = "Salvar";
+            this.ButSalve.Location = new System.Drawing.Point(11, 118);
+            this.ButSalve.Name = "ButSalve";
+            this.ButSalve.Size = new System.Drawing.Size(121, 37);
+            this.ButSalve.TabIndex = 20;
+            this.ButSalve.ButtonOnClick += new AppSystem.Components.Button.ButtonClick(this.ButSalve_ButtonOnClick);            
+            // 
+            // ButClose
+            // 
+            this.ButClose.Icon = AppSystem.Components.ButtonIcon.Close;
+            this.ButClose.Label = "Fecha&r";
+            this.ButClose.Location = new System.Drawing.Point(366, 118);
+            this.ButClose.Name = "ButClose";
+            this.ButClose.Size = new System.Drawing.Size(121, 37);
+            this.ButClose.TabIndex = 19;
+            this.ButClose.ButtonOnClick += new AppSystem.Components.Button.ButtonClick(this.ButClose_ButtonOnClick);
+            // 
             // FrmCityUpdate
             // 
-            this.AcceptButton = this.BtnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.ButEnd;
-            this.ClientSize = new System.Drawing.Size(498, 145);
+            this.ClientSize = new System.Drawing.Size(498, 166);
+            this.Controls.Add(this.ButSalve);
+            this.Controls.Add(this.ButClose);
             this.Controls.Add(this.CmbUf);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.ButEnd);
-            this.Controls.Add(this.BtnSave);
             this.Controls.Add(this.TxtName);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -118,12 +115,11 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button ButEnd;
-        private System.Windows.Forms.Button BtnSave;
         private System.Windows.Forms.TextBox TxtName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox CmbUf;
+        private Components.Button ButSalve;
+        private Components.Button ButClose;
     }
 }

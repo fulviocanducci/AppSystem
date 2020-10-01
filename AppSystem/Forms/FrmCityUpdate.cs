@@ -1,5 +1,8 @@
 ﻿using AppSystem.Data;
+using AppSystem.Extensions;
 using AppSystem.Models;
+using AppSystem.Validators;
+using FluentValidation.Results;
 using System;
 using System.Data;
 using System.Linq;
@@ -14,13 +17,17 @@ namespace AppSystem.Forms
             InitializeComponent();
             Database = database;
             Id = id;
+            Validator = new CityValidator(database);
         }
 
         public Database Database { get; }
+        public CityValidator Validator { get; }
         public int Id { get; }
 
         private void FrmCityUpdate_Load(object sender, EventArgs e)
         {
+            AcceptButton = ButSalve.ButtonReference;
+            CancelButton = ButClose.ButtonReference;
             TxtName.Text = "";
             CmbUf.DataSource = Database
                         .Uf
@@ -29,52 +36,75 @@ namespace AppSystem.Forms
                         .ToList();
             CmbUf.ValueMember = "Id";
             CmbUf.DisplayMember = "Name";
-            BtnSave.Tag = "Add";
+            ButClose.Tag = "Add";
             if (Id > 0)
             {
                 City city = Database.City.AsNoTracking().FirstOrDefault(x => x.Id == Id);
                 if (city != null)
-                {                    
+                {
                     CmbUf.SelectedValue = city.UfId;
                     TxtName.Text = city.Name;
-                    BtnSave.Tag = "Update";
+                    ButClose.Tag = "Update";
                 }
                 else
                 {
-                    ButEnd.PerformClick();
+                    Close();
                 }
             }
         }
 
-        private void ButEnd_Click(object sender, EventArgs e)
+        private void Save()
+        {
+            if (int.TryParse(CmbUf.SelectedValue.ToString(), out int ufId))
+            {
+                City city = new City
+                {
+                    Id = Id,
+                    UfId = ufId,
+                    Name = TxtName.Text
+                };
+
+                ValidationResult result = Validator.Validate(city);
+
+                if (result.IsValid)
+                {
+
+                    switch (ButClose.Tag)
+                    {
+                        case "Add":
+                            Database.City.Add(city);
+                            break;
+                        case "Update":
+                            Database.Entry(city).State = System.Data.Entity.EntityState.Modified;
+                            break;
+                    }
+                    if (Database.SaveChanges() > 0)
+                    {
+                        MessageBox.Show("Dados atualizados com êxito", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    Database.Entry(city).State = System.Data.Entity.EntityState.Detached;
+                    Close();
+                }
+                else
+                {
+                    MessageBox.Show(
+                        result.Errors.Messages(),
+                        "Validação",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                    );
+                }
+            }
+        }
+
+        private void ButClose_ButtonOnClick(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void BtnSave_Click(object sender, EventArgs e)
+        private void ButSalve_ButtonOnClick(object sender, EventArgs e)
         {
-            int ufId = int.Parse(CmbUf.SelectedValue.ToString());
-            City city = new City
-            {
-                Id = Id,
-                UfId = ufId,
-                Name = TxtName.Text
-            };
-            switch (BtnSave.Tag)
-            {
-                case "Add":
-                    Database.City.Add(city);
-                    break;
-                case "Update":
-                    Database.Entry(city).State = System.Data.Entity.EntityState.Modified;
-                    break;
-            }
-            if (Database.SaveChanges() > 0)
-            {
-                MessageBox.Show("Dados atualizados com êxito", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            Database.Entry(city).State = System.Data.Entity.EntityState.Detached;
-            ButEnd.PerformClick();
+            Save();
         }
     }
 }

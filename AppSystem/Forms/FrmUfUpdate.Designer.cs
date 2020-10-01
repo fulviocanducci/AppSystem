@@ -30,14 +30,14 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.TxtName = new System.Windows.Forms.TextBox();
-            this.BtnSave = new System.Windows.Forms.Button();
-            this.ButEnd = new System.Windows.Forms.Button();
+            this.ButClose = new AppSystem.Components.Button();
+            this.ButSalve = new AppSystem.Components.Button();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(7, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(103, 13);
             this.label1.TabIndex = 0;
@@ -45,42 +45,40 @@
             // 
             // TxtName
             // 
-            this.TxtName.Location = new System.Drawing.Point(15, 25);
+            this.TxtName.Location = new System.Drawing.Point(10, 25);
             this.TxtName.MaxLength = 2;
             this.TxtName.Name = "TxtName";
-            this.TxtName.Size = new System.Drawing.Size(163, 20);
+            this.TxtName.Size = new System.Drawing.Size(256, 20);
             this.TxtName.TabIndex = 1;
             this.TxtName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // BtnSave
+            // ButClose
             // 
-            this.BtnSave.Location = new System.Drawing.Point(12, 66);
-            this.BtnSave.Name = "BtnSave";
-            this.BtnSave.Size = new System.Drawing.Size(75, 23);
-            this.BtnSave.TabIndex = 2;
-            this.BtnSave.Text = "&Salvar";
-            this.BtnSave.UseVisualStyleBackColor = true;
-            this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
+            this.ButClose.Icon = AppSystem.Components.ButtonIcon.Close;
+            this.ButClose.Label = "Fecha&r";
+            this.ButClose.Location = new System.Drawing.Point(143, 59);
+            this.ButClose.Name = "ButClose";
+            this.ButClose.Size = new System.Drawing.Size(121, 37);
+            this.ButClose.TabIndex = 17;
+            this.ButClose.ButtonOnClick += new AppSystem.Components.Button.ButtonClick(this.ButClose_ButtonOnClick);
             // 
-            // ButEnd
+            // ButSalve
             // 
-            this.ButEnd.Location = new System.Drawing.Point(103, 66);
-            this.ButEnd.Name = "ButEnd";
-            this.ButEnd.Size = new System.Drawing.Size(75, 23);
-            this.ButEnd.TabIndex = 3;
-            this.ButEnd.Text = "Sai&r";
-            this.ButEnd.UseVisualStyleBackColor = true;
-            this.ButEnd.Click += new System.EventHandler(this.ButEnd_Click);
+            this.ButSalve.Icon = AppSystem.Components.ButtonIcon.Save;
+            this.ButSalve.Label = "Salvar";
+            this.ButSalve.Location = new System.Drawing.Point(6, 59);
+            this.ButSalve.Name = "ButSalve";
+            this.ButSalve.Size = new System.Drawing.Size(121, 37);
+            this.ButSalve.TabIndex = 18;
+            this.ButSalve.ButtonOnClick += new AppSystem.Components.Button.ButtonClick(this.ButSalve_ButtonOnClick);
             // 
             // FrmUfUpdate
             // 
-            this.AcceptButton = this.BtnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.ButEnd;
-            this.ClientSize = new System.Drawing.Size(191, 101);
-            this.Controls.Add(this.ButEnd);
-            this.Controls.Add(this.BtnSave);
+            this.ClientSize = new System.Drawing.Size(276, 104);
+            this.Controls.Add(this.ButSalve);
+            this.Controls.Add(this.ButClose);
             this.Controls.Add(this.TxtName);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -100,7 +98,7 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox TxtName;
-        private System.Windows.Forms.Button BtnSave;
-        private System.Windows.Forms.Button ButEnd;
+        private Components.Button ButClose;
+        private Components.Button ButSalve;
     }
 }
